@@ -1,0 +1,13 @@
+name: "pebble"
+version: 1.0
+files:
+  - "include/*"
+  - "src/*"
+  - "support/*"
+  - "Makefile"
+  - "deps.mk"
+
+licenses:
+  - bsd3:
+    name: "BSD-3-Clause"
+    file: "LICENSE-BSD-3-Clause"
