@@ -89,7 +89,7 @@ BLDDIR_TARGET = $(BLDDIR)$(TARGET_PATH)/
 
 OBJDIR = $(BLDDIR_TARGET)
 
-LINK_SCRIPT ?= $(OBJDIR)pebble.lds
+LINK_SCRIPT ?= $(PBL_ROOT)/src/$(ARCH)/pebble.lds
 
 find_path_to_lib = $(foreach d, $(LIBDIR), $(wildcard $(d)$(1)))
 real_path_to_lib=$(realpath $(call find_path_to_lib,$(1)))
@@ -146,14 +146,16 @@ else ifdef APPNAME
 
 all: $(OBJDIR)$(APPNAME)
 
-$(OBJDIR)pebble.lds : $(PBL_ROOT)/src/$(ARCH)/pebble.lds $(BUILD_CONF_DEPS)
+LINK_SCRIPT_POST = $(OBJDIR)$(notdir $(LINK_SCRIPT))
+
+$(LINK_SCRIPT_POST): $(LINK_SCRIPT) $(BUILD_CONF_DEPS)
 	@- mkdir -p $(@D) 2>&1 > /dev/null
 	@echo "[CPP] $(subst $(GIT_DIR),,$(abspath $@))"
 	$(CPP) -I. -I$(TOPDIR)include $(SFLAGS) -MT $@ -P $< -o $@
 
-$(OBJDIR)$(APPNAME) : $(LINK_SCRIPT) $(OBJS) $(LINKDEPS)
+$(OBJDIR)$(APPNAME) : $(LINK_SCRIPT_POST) $(OBJS) $(LINKDEPS)
 	@echo "[LD] $(subst $(GIT_DIR),,$(abspath $@))"
-	$(LD) $(LFLAGS) -T $(LINK_SCRIPT) -o $@ $(OBJS) \
+	$(LD) $(LFLAGS) -T $(LINK_SCRIPT_POST) -o $@ $(OBJS) \
 		$(addprefix -L,$(dir $(LINKDEPS))) $(patsubst %,-l%,$(LINKLIBS)) \
 		$(EXTRA_LINK)
 
