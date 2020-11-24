@@ -96,6 +96,7 @@ namespace Pbl::API {
     };
 
     enum Resource_type {
+        RES_PIO,
         RES_REG,
         RES_IRQ,
     };
