@@ -17,8 +17,8 @@ __pebble_start:
         // save UTCB and Cpu on top of the stack
         // WARNING[Zeta_ctx/init.S]:
         // ~~~~~~~~~~~~~~~~~~~~~~~~~
-        // XXX: This has to be in sync with the Zeta_ctx class definition.
-        sub     sp, sp, #24
+        // XXX: This has to be in sync with the Zeta_ctx class definition + must be 16-bytes aligned.
+        sub     sp, sp, #32
         stp     x0, x1, [sp] // save UTCB* and Cpu in stack
 
         // extern "C" void __main(Nova::Utcb *utcb, Cpu cpu)
