@@ -69,7 +69,7 @@ namespace Pbl::API {
     struct Create_ec_args {
         Msc_method id{CREATE_EC};
         Ec_type type;
-        Ec_features features;
+        EcFeatures features;
         Sel ec;
         Sel own;
         Cpu cpu;
@@ -149,7 +149,7 @@ namespace Pbl::API {
         return ret->status;
     }
 
-    static inline Errno ec_create(Utcb *utcb, Ec_type type, Ec_features features, Sel ec, Sel own, Cpu cpu, mword ec_utcb, mword sp,
+    static inline Errno ec_create(Utcb *utcb, Ec_type type, EcFeatures features, Sel ec, Sel own, Cpu cpu, mword ec_utcb, mword sp,
                                   Sel evt) {
         Errno err;
         Create_ec_args *args = reinterpret_cast<Create_ec_args *>(utcb->data);

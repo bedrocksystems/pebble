@@ -44,7 +44,7 @@ namespace Pbl {
         VCPU = 2,
     };
 
-    enum Ec_features : unsigned int {
+    enum EcFeatures : unsigned int {
         NONE = 0x0,
         FPU = 0x1,
     };

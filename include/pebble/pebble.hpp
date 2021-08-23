@@ -18,7 +18,7 @@ namespace Pbl {
     static inline mword heap_start() { return reinterpret_cast<mword>(&__pebble_heap_start); }
 
     static inline Errno create_local_ec(Utcb* utcb, Sel sel, Cpu cpu, mword utcb_va, mword sp_va, Sel evt_base) {
-        Ec_features features = Ec_features::FPU;
+        EcFeatures features = EcFeatures::FPU;
         return Pbl::API::ec_create(utcb, Ec_type::LOCAL, features, sel, self_pd(), cpu, utcb_va, sp_va, evt_base);
     }
 
