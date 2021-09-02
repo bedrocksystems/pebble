@@ -25,7 +25,7 @@ namespace Pbl {
         Sel sel_gst_nova;        // Number of additional capability selectors for guest events required by NOVA
         size_t va_max_bits;      // Max order of user virtual address space
         mword highest_va;        // Highest virtual address we can address
-        size_t host_memsz_bytes; // Size of the host physical memory reserved for that hyper-process
+        size_t host_max_bytes;   // Size of the host physical memory reserved for that hyper-process
 
         size_t host_ram_bytes;  // Amount of physical memory available to map.
         size_t guest_ram_bytes; // Size of the physical memory reserved for guest as RAM
